@@ -1,0 +1,194 @@
+/* .collection-hero__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-hero--with-image .collection-hero__inner {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero.collection-hero--with-image {
+    padding: calc(4rem + var(--page-width-margin)) 0 calc(4rem + var(--page-width-margin));
+    overflow: hidden;
+  }
+
+  .collection-hero--with-image .collection-hero__inner {
+    padding-bottom: 0;
+  }
+}
+
+.collection-hero__text-wrapper {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero {
+    padding: 0;
+  }
+
+  .collection-hero__inner {
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 0;
+  }
+}
+
+.collection-hero__title {
+  margin: 2.5rem 0;
+}
+
+.collection-hero__title + .collection-hero__description {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero__title + .collection-hero__description {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .collection-hero__description {
+    max-width: 66.67%;
+  }
+
+  .collection-hero--with-image .collection-hero__description {
+    max-width: 100%;
+  }
+}
+
+.collection-hero--with-image .collection-hero__title {
+  margin: 0;
+}
+
+.collection-hero--with-image .collection-hero__text-wrapper {
+  padding: 5rem 0 4rem;
+}
+
+.collection-hero__image-container {
+  border: var(--media-border-width) solid rgba(var(--color-foreground), var(--media-border-opacity));
+  border-radius: var(--media-radius);
+  box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--media-shadow-opacity));
+}
+
+@media screen and (max-width: 749px) {
+  .collection-hero__image-container {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero--with-image .collection-hero__text-wrapper {
+    padding: 4rem 2rem 4rem 0;
+    flex-basis: 50%;
+  }
+
+  .collection-hero__image-container {
+    align-self: stretch;
+    flex: 1 0 50%;
+    margin-left: 3rem;
+    min-height: 20rem;
+  }
+} */
+
+.collection-hero .breadcrumb{
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.collection-hero{
+  margin-top: 30px;
+}
+.collection-hero__title{
+  margin: 0;
+  font-size: calc(var(--font-heading-scale) * 34px);
+}
+.chero-column img{
+  border-radius: var(--media-radius);
+}
+.chero-overlay {
+  position: relative;
+  padding: calc(20px + var(--media-border-width));
+  border-radius: var(--media-radius);
+}
+@media screen and (min-width: 992px) {
+  .chero-overlay {
+    min-height: 20rem;
+  }
+}
+.chero-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--media-radius);
+}
+.chero-overlay .collection-hero__text-wrapper {
+  z-index: 2;
+}
+.chero-overlay .collection-hero__image-wrapper {
+  position: absolute;
+  inset: 0;
+}
+.chero-overlay .collection-hero__image-container {
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
+}
+.collection-hero__inner {
+  display: flex;
+  flex-direction: column;
+}
+.collection-hero__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.chero-column .collection-hero__text-wrapper:has( .collection-hero__description:empty) {
+    gap: 0;
+}
+.collection-hero__description {
+  max-width: 80rem;
+  color: rgb(var(--color-foreground),0.9);
+  word-break: break-word;
+}
+.collection-hero__description a{
+  font-weight: var(--font-body-weight-medium);
+}
+.collection-hero__image-wrapper {
+  position: relative;
+  overflow: visible;
+}
+.collection-hero__image-container {
+  align-self: stretch;
+  min-height: 20rem;
+  margin-top: 30px;
+}
+.chero-column .collection-hero__description{
+  max-width: unset;
+}
+.collection-hero .breadcrumb_colmun a:hover{
+  color: rgb(var(--color-link-hover));
+}
+@media screen and (min-width: 768px) {
+  .collection-hero__image-wrapper_bottom {
+    padding-bottom: 6.1rem;
+  }
+}
+@media (max-width: 991px){
+  .collection-hero__title{
+    font-size: calc(var(--font-heading-scale) * 20px);
+  }
+  .chero-overlay,.chero-overlay:before {
+    border-radius: calc(var(--media-radius) * 1 / 2);
+  }
+}

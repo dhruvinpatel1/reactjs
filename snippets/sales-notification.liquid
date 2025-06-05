@@ -1,0 +1,193 @@
+{% comment %}
+  snippets/sales-notification.liquid
+  “Recent purchase” pop-up notification to show on product pages.
+{% endcomment %}
+
+<div id="SalesNotification" class="sales-noty hidden">
+  <div class="sales-noty__img">
+    <a href="#" id="SalesNotificationLink">
+      <img src="" alt="Product Thumbnail" id="SalesNotificationImg" height="100" width="100">
+    </a>
+  </div>
+  <div class="sales-noty__info">
+    <div id="SalesNotificationMessage"></div>
+  </div>
+</div>
+
+<style>
+  /* ── Container (hidden by default) ───────────────────────────────── */
+  #SalesNotification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: none; /* JS will toggle “block” */
+    max-width: 100%;
+    min-height: 100px;
+    width: 366px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 10000;
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 467px) {
+    #SalesNotification {
+      bottom: 35px;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+
+  /* ── Thumbnail ────────────────────────────────────────── */
+  .sales-noty__img {
+    width: 100px;
+    height: 100%;
+    overflow: hidden;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+  }
+  .sales-noty__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Text area ────────────────────────────────────────── */
+  .sales-noty__info {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #2d3748; /* dark gray */
+  }
+
+  /* ── Slide-in animation ───────────────────────────────── */
+  @keyframes slideIn {
+    from {
+      transform: translateY(120%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slideOut {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(120%);
+      opacity: 0;
+    }
+  }
+  .sales-noty--hide {
+    animation: slideOut 0.5s ease-in forwards !important;
+  }
+
+  #SalesNotificationMessage a {
+    display: block;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 400;
+    color: #3182ce;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // ── Sample data array; replace with real data or an AJAX endpoint ──
+    var sampleNotifications = [
+      {
+        name: 'Megha',
+        location: 'Pathanamthitta, India',
+        productHandle: 'pink-butterfly-phone-case',
+        productImage:
+          'https://cdn.shopify.com/s/files/1/0686/3119/9975/files/05b2e8af4fa4cbd54cb24accd2c9d38f_08ead28a-1c71-4245-ae36-d6f566eceb49.jpg?v=1715107273',
+        productTitle: 'Pink Butterfly Phone Case',
+      },
+      {
+        name: 'Arjun',
+        location: 'Mumbai, India',
+        productHandle: 'navy-leather-wallet',
+        productImage:
+          'https://cdn.shopify.com/s/files/1/0686/3119/9975/files/05b2e8af4fa4cbd54cb24accd2c9d38f_08ead28a-1c71-4245-ae36-d6f566eceb49.jpg?v=1715107273',
+        productTitle: 'Navy Leather Wallet',
+      },
+      {
+        name: 'Sana',
+        location: 'Delhi, India',
+        productHandle: 'emerald-gem-necklace',
+        productImage:
+          'https://cdn.shopify.com/s/files/1/0686/3119/9975/files/05b2e8af4fa4cbd54cb24accd2c9d38f_08ead28a-1c71-4245-ae36-d6f566eceb49.jpg?v=1715107273',
+        productTitle: 'Emerald Gem Necklace',
+      },
+      {
+        name: 'Dhruvin',
+        location: 'Ahemdabad, India',
+        productHandle: 'pink-butterfly-phone-case',
+        productImage:
+          'https://cdn.shopify.com/s/files/1/0686/3119/9975/files/05b2e8af4fa4cbd54cb24accd2c9d38f_08ead28a-1c71-4245-ae36-d6f566eceb49.jpg?v=1715107273',
+        productTitle: 'Pink Butterfly Phone Case',
+      },
+      {
+        name: 'Mansi',
+        location: 'Nikol, India',
+        productHandle: 'navy-leather-wallet',
+        productImage:
+          'https://cdn.shopify.com/s/files/1/0686/3119/9975/files/05b2e8af4fa4cbd54cb24accd2c9d38f_08ead28a-1c71-4245-ae36-d6f566eceb49.jpg?v=1715107273',
+        productTitle: 'Navy Leather Wallet',
+      },
+      {
+        name: 'Kajal',
+        location: 'Mumbai, India',
+        productHandle: 'emerald-gem-necklace',
+        productImage:
+          'https://cdn.shopify.com/s/files/1/0686/3119/9975/files/05b2e8af4fa4cbd54cb24accd2c9d38f_08ead28a-1c71-4245-ae36-d6f566eceb49.jpg?v=1715107273',
+        productTitle: 'Emerald Gem Necklace',
+      },
+    ];
+
+    var banner = document.getElementById('SalesNotification');
+    var imgElem = document.getElementById('SalesNotificationImg');
+    var linkElem = document.getElementById('SalesNotificationLink');
+    var msgElem = document.getElementById('SalesNotificationMessage');
+
+    function showRandomNotification() {
+      var rand = sampleNotifications[Math.floor(Math.random() * sampleNotifications.length)];
+      var linkUrl = '/products/' + rand.productHandle;
+      imgElem.src = rand.productImage;
+      linkElem.href = linkUrl;
+      msgElem.innerHTML =
+        rand.name + ' from ' + rand.location + ' purchased a <a href="' + linkUrl + '">' + rand.productTitle + '</a>';
+      banner.classList.remove('hidden', 'sales-noty--hide');
+      banner.style.display = 'flex';
+    }
+
+    function hideNotification() {
+      banner.classList.add('sales-noty--hide');
+      setTimeout(function () {
+        banner.style.display = 'none';
+      }, 500);
+    }
+
+    // showRandomNotification();
+
+    // Show one notification when page loads:
+    setTimeout(showRandomNotification, 2000);
+    // 2 seconds after load
+
+    // Then hide after 6 seconds:
+    setTimeout(hideNotification, 10000);
+
+    // Optionally, show again every 30–40 seconds:
+    setInterval(function () {
+      showRandomNotification();
+      setTimeout(hideNotification, 6000);
+    }, 20000 + Math.random() * 10000);
+  });
+</script>
