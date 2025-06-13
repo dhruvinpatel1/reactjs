@@ -107,6 +107,122 @@
                     </h2>
                   </a>
                 </div>
+
+                <!--
+                  <div class="phone-model-selector">
+                    <div class="phone-brand">
+                      <label for="phone-brand">Select Phone Brand</label>
+                      <select id="phone-brand">
+                          <option value="">- Choose Your Phone Brand -</option>
+                      </select>
+                    </div
+
+                    <label for="phone-model1">Select Phone Model</label>
+                    <select id="phone-model1" disabled>
+                        <option value="">- Choose Your Phone Model -</option>
+                    </select>
+                  </div>
+                -->
+
+                <!--
+                  <div class="pd-form__input">
+                    <label class="pd-form__label">Phone Model</label>
+                    <select id="phone-model" form="{{ 'product-form-' | append: section.id }}" name="properties[Phone Model]" required>
+                        <option value="">- Choose Your Phone Model -</option>
+                    </select>
+                  </div>
+
+                  <div class="pd-form__input">
+                    <label class="pd-form__label">Color</label>
+                    <select id="phone-color" form="{{ 'product-form-' | append: section.id }}" name="properties[Color]" required>
+                        <option value="">- Choose Your Color -</option>
+                    </select>
+                  </div>
+
+                  <script>
+                    // Sample list — replace this with your real data
+                    const phoneModels = [
+                      "iPhone 16 Pro Max", "iPhone 16 Pro", "iPhone 16", "iPhone 15 Pro Max",
+                      "iPhone 15 Pro", "iPhone 15", "Samsung S24 Ultra", "Samsung S23 Plus"
+                    ];
+
+                    const caseColors = [
+                      "Mint Green", "Apricot Orange", "Deep Lake Blue", "Yellow", "Lilac Purple",
+                      "Rose Pink", "Lavender Violet", "Midnight Blue", "White", "Rock Gray",
+                      "Antique White", "Pink", "Orange", "Red", "Charcoal Gray Black",
+                      "Blue", "Gemstone Green", "Black", "Pink Sand", "Cobalt Blue",
+                      "Ice Aquamarine", "Cocoa", "Pebble", "Light Blue", "Camellia Red",
+                      "Blue Gray", "Begonia", "Golden", "Peach", "Dark Purple",
+                      "Dark Green", "Shiny Yellow", "Derby Red", "Olive", "Starry Blue",
+                      "Rose Red", "Lemon Yellow", "Cowboy Blue", "Cranberry", "Gemstone Blue",
+                      "Light Purple", "New Peach", "New Sky Blue", "Blue Sea", "Purple",
+                      "Lavender Gray", "Fluorescent Pink", "Pine Forest Green", "Green Black", "Rehmannia Green",
+                      "Milk Yellow", "Violet (wine Red)", "Chrysant Hemum","Oragon Fruit", "Light Yellow",
+                      "Papaya", "Ice Ocean Blue", "Pine Needle Blue", "Grapefruit", "Fluorescent Green (Neon Green)",
+                      "Cactus", "Black Currant", "Deep See Blue", "New Green", "Pink Orange",
+                      "Golden Orange", "Plum", "Pistachio", "Honeydew", "Mediterranean Blue",
+                      "Amethyst", "Granny Gray", "Light Lime Green", "Bird Feather Moniror", "Gray Pink", "Lilac", "Berry Purple"
+                    ];
+
+                    const phoneColors = [
+                      "Black", "White", "Red", "Blue", "Neon Green", "Yellow", "Orange", "Rose Gold",
+                      "Midnight Blue", "Graphite", "Green", "Silver", "Space Gray", "Lavender",
+                      "Cream", "Sky Blue", "Lilac", "Charcoal", "Bronze", "Navy", "Mint", "Peach",
+                      "Crimson", "Cobalt", "Teal", "Olive", "Ice Blue", "Champagne", "Pearl White",
+                      "Slate", "Dusty Pink", "Coral", "Turquoise", "Purple", "Magenta", "Lime", "Taupe",
+                      "Beige", "Rust", "Mustard", "Sand", "Burgundy", "Sea Green", "Azure", "Aqua",
+                      "Cyan", "Ivory", "Blush", "Steel", "Ash", "Fog", "Mocha", "Mahogany", "Jet Black",
+                      "Cherry Red", "Denim", "Amethyst", "Fuchsia", "Indigo", "Khaki", "Lagoon", "Lemon",
+                      "Maroon", "Mint Green", "Moss", "Mulberry", "Nude", "Ocean", "Onyx", "Orchid",
+                      "Papaya", "Pastel Blue", "Pine", "Platinum", "Quartz", "Rose", "Rustic Red"
+                    ];
+
+                    const modelSelect = document.getElementById("phone-model");
+                    const colorSelect = document.getElementById("phone-color");
+
+                    // Populate phone models
+                    phoneModels.forEach(model => {
+                      const option = document.createElement("option");
+                      option.value = model;
+                      option.textContent = model;
+                      modelSelect.appendChild(option);
+                    });
+
+                    // Populate colors
+                    caseColors.forEach(color => {
+                      const option = document.createElement("option");
+                      option.value = color;
+                      option.textContent = color;
+                      colorSelect.appendChild(option);
+                    });
+
+                    // Remove default novalidate (optional)
+                    document.addEventListener("DOMContentLoaded", () => {
+                      const form = document.querySelector("form[novalidate]");
+                      if (form) form.removeAttribute("novalidate");
+                    });
+                  </script>
+
+                  <style>
+                    .pd-form__input {
+                      margin-bottom: 20px;
+                    }
+
+                    .pd-form__input select {
+                      width: 100%;
+                      padding: 8px;
+                      margin-top: 5px;
+                      margin-bottom: 5px;
+                      border: 2px solid #000;
+                      border-radius: 5px;
+                    }
+
+                    .pd-form__input select:focus-visible {
+                      outline: none;
+                      border-color: #000;
+                    }
+                  </style>
+                -->
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
